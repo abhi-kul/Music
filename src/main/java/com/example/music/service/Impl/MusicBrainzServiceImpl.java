@@ -2,6 +2,7 @@ package com.example.music.service.Impl;
 
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +14,10 @@ import com.example.music.service.DataInterface;
 @Service
 public class MusicBrainzServiceImpl implements DataInterface<MusicBrainzDetails> {
 
-  private static final String BASE_URL = "http://musicbrainz.org/ws/2/artist/";
+  @Value("${music.brainz.base.url}")
+  private String BASE_URL;
+  @Value("${music.brainz.seffix.url}")
+  private String SUFFIX_URL;
 
   private final RestTemplate restTemplate;
 
@@ -24,7 +28,7 @@ public class MusicBrainzServiceImpl implements DataInterface<MusicBrainzDetails>
   // http://musicbrainz.org/ws/2/artist/f27ec8db-af05-4f36-916e-3d57f91ecf5e?&fmt=json&inc=url-rels+release-groups
   @Override
   public MusicBrainzDetails getData(String mbid) {
-    String URL = BASE_URL.concat(mbid).concat("?fmt=json&inc=url-rels+release-groups");
+    String URL = BASE_URL.concat(mbid).concat(SUFFIX_URL);
     try {
       ResponseEntity<MusicBrainzDetails> responseEntity =
           restTemplate.getForEntity(URL, MusicBrainzDetails.class);

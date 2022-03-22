@@ -2,6 +2,7 @@ package com.example.music.service.Impl;
 
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +14,8 @@ import com.example.music.service.DataInterface;
 @Service
 public class CoverArtArchiveServiceImpl implements DataInterface<CoverArtArchiveDetail> {
 
-  private static final String BASE_URL = "https://coverartarchive.org/release-group/";
+  @Value("${cover.art.archive.base.url}")
+  private String BASE_URL;
 
   private final RestTemplate restTemplate;
 

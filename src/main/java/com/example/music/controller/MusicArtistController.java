@@ -12,6 +12,7 @@ import com.example.music.exception.CoverArtArchiveException;
 import com.example.music.exception.MusicBrainzException;
 import com.example.music.exception.MusicServiceException;
 import com.example.music.exception.WikipediaException;
+import com.example.music.model.ArtistDetail;
 import com.example.music.service.MusicArtistService;
 
 @RestController
@@ -27,14 +28,7 @@ public class MusicArtistController {
   }
 
   @GetMapping("/details/{mbid}")
-  public ResponseEntity getMusicArtistDetails(@PathVariable String mbid) {
-    try {
+  public ResponseEntity<ArtistDetail> getMusicArtistDetails(@PathVariable String mbid) {
       return ResponseEntity.ok().body(musicArtistService.getArtistDetail(mbid));
-    } catch (MusicBrainzException
-        | WikipediaException
-        | CoverArtArchiveException
-        | MusicServiceException e) {
-      return ResponseEntity.status(e.getResponseCode()).body(e.getMessage());
-    }
   }
 }

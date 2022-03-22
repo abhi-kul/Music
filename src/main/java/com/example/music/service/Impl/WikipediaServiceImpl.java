@@ -2,6 +2,7 @@ package com.example.music.service.Impl;
 
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,14 +14,16 @@ import com.example.music.service.DataInterface;
 @Service
 public class WikipediaServiceImpl implements DataInterface<WikipediaData> {
 
-  private static final String BASE_URL = "https://en.wikipedia.org/api/rest_v1/page/summary/";
+  @Value("${wikipedia.base.url}")
+  private String BASE_URL;
+
   private final RestTemplate restTemplate;
 
   public WikipediaServiceImpl(RestTemplate restTemplate) {
     this.restTemplate = restTemplate;
   }
 
-  // https://en.wikipedia.org/api/rest_v1/page/summary/{title}
+  //https://en.wikipedia.org/api/rest_v1/page/summary/{title}
   @Override
   public WikipediaData getData(String title) {
     String URL = BASE_URL.concat(title);

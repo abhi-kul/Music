@@ -12,9 +12,4 @@ public class CoverArtArchiveException extends CustomRuntimeException {
   public String getMessage() {
     return message;
   }
-
-  @Override
-  public int getResponseCode() {
-    return 400;
-  }
 }

@@ -2,6 +2,7 @@ package com.example.music.service.Impl;
 
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,8 +14,11 @@ import com.example.music.service.DataInterface;
 @Service
 public class WikiDataServiceImpl implements DataInterface<Object> {
 
-  private final String BASE_URL = "https://www.wikidata.org/wiki/";
-  private final String ENTITY_DATA_URL = "Special:EntityData/";
+  @Value("${wikidata.base.url}")
+  private String BASE_URL;
+  @Value("${wikidata.entity.url}")
+  private String ENTITY_DATA_URL;
+
   private final RestTemplate restTemplate;
 
   public WikiDataServiceImpl(RestTemplate restTemplate) {

@@ -1,18 +1,22 @@
 # Music Service
 Music service to provide artist data.
 
-##Running the project
+#Tech Stack
+Java 11
+Springboot v2.6.4
+Maven
+JUnit
+Lombok
+
+#Running the project
 mvn spring-boot:run
 
-###Tools
-Lombok : To make implementation simple and to avoid a lot of redundant code.
-
-###Services used
+#Third party Services used
 1.) MusicBrainz Service to fetch basic data related to artist.
 2.) Wikipedia Service to get detailed description.
 3.) CoverArtArchive to get cover images for released albums.
 
-###Endpoints
+#Endpoints
 
 URL : /musify/music-artist/musicBrainzDetails/{mbid}
 
@@ -44,3 +48,5 @@ Response :
 2.) Add retry mechanism as well to improve the resiliency for our application.
 
 3.) Improve test coverage.
+
+4.) Add logger

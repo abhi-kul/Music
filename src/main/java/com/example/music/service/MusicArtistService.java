@@ -88,20 +88,6 @@ public class MusicArtistService {
     WikipediaData wikipediaData = wikipediaService.getData(wikipediaTitle);
     String extract = wikipediaData.getExtract_html();
 
-    /***
-     * Below commented code was working but was taking a lot of time to complete,
-     * hence increasing the response time of our service
-     *
-     */
-    //        List<Album> albums = new ArrayList<>();
-    //        artistData.getReleaseGroups().forEach(
-    //                releaseGroup -> {
-    //                    albums.add(new Album(releaseGroup.getId(), releaseGroup.getTitle(),
-    //
-    // coverArtArchiveService.getCover(releaseGroup.getId()).getImages().stream().filter(Image::isFront).findFirst().map(Image::getImage).orElse(null)));
-    //                }
-    //        );
-
     return ArtistDetail.builder()
         .mbid(artistData.getId())
         .gender(artistData.getGender())
